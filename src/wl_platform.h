@@ -434,6 +434,9 @@ typedef struct _GLFWwindowWayland
         uint32_t                    buttonPressSerial;
         const char*                 cursorName;
     } fallback;
+
+    double                      askedCursorPosX, askedCursorPosY;
+    GLFWbool                    didAskForSetCursorPos;
 } _GLFWwindowWayland;
 
 // Wayland-specific global data
