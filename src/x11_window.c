@@ -2880,8 +2880,13 @@ void _glfwSetCursorPosX11(_GLFWwindow* window, double x, double y)
     window->x11.warpCursorPosX = (int) x;
     window->x11.warpCursorPosY = (int) y;
 
-    XWarpPointer(_glfw.x11.display, None, window->x11.handle,
-                 0,0,0,0, (int) x, (int) y);
+    int device;
+    if (XIGetClientPointer(_glfw.x11.display, window->x11.handle, &device)) {
+        XIWarpPointer(_glfw.x11.display, device, None, window->x11.handle,
+                0, 0, 0, 0, x, y);
+    } else {
+        fprintf(stderr, "XIGetClientPointer fail\n");
+    }
     XFlush(_glfw.x11.display);
 }
 

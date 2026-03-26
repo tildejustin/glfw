@@ -640,6 +640,14 @@ static GLFWbool initExtensions(void)
             _glfwPlatformGetModuleSymbol(_glfw.x11.xi.handle, "XIQueryVersion");
         _glfw.x11.xi.SelectEvents = (PFN_XISelectEvents)
             _glfwPlatformGetModuleSymbol(_glfw.x11.xi.handle, "XISelectEvents");
+        _glfw.x11.xi.GetClientPointer = (PFN_XIGetClientPointer)
+            _glfw_dlsym(_glfw.x11.xi.handle, "XIGetClientPointer");
+        _glfw.x11.xi.WarpPointer = (PFN_XIWarpPointer)
+            _glfw_dlsym(_glfw.x11.xi.handle, "XIWarpPointer");
+        _glfw.x11.xi.GetClientPointer = (PFN_XIGetClientPointer)
+            _glfw_dlsym(_glfw.x11.xi.handle, "XIGetClientPointer");
+        _glfw.x11.xi.WarpPointer = (PFN_XIWarpPointer)
+            _glfw_dlsym(_glfw.x11.xi.handle, "XIWarpPointer");
 
         if (XQueryExtension(_glfw.x11.display,
                             "XInputExtension",

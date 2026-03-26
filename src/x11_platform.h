@@ -371,8 +371,12 @@ typedef Bool (* PFN_XF86VidModeGetGammaRampSize)(Display*,int,int*);
 
 typedef Status (* PFN_XIQueryVersion)(Display*,int*,int*);
 typedef int (* PFN_XISelectEvents)(Display*,Window,XIEventMask*,int);
+typedef Bool (* PFN_XIGetClientPointer)(Display*,Window,int*);
+typedef Bool (* PFN_XIWarpPointer)(Display*,int,Window,Window,double,double,int,int,double,double);
 #define XIQueryVersion _glfw.x11.xi.QueryVersion
 #define XISelectEvents _glfw.x11.xi.SelectEvents
+#define XIGetClientPointer _glfw.x11.xi.GetClientPointer
+#define XIWarpPointer _glfw.x11.xi.WarpPointer
 
 typedef Bool (* PFN_XRenderQueryExtension)(Display*,int*,int*);
 typedef Status (* PFN_XRenderQueryVersion)(Display*dpy,int*,int*);
@@ -847,6 +851,8 @@ typedef struct _GLFWlibraryX11
         int         minor;
         PFN_XIQueryVersion QueryVersion;
         PFN_XISelectEvents SelectEvents;
+        PFN_XIGetClientPointer GetClientPointer;
+        PFN_XIWarpPointer WarpPointer;
     } xi;
 
     struct {
